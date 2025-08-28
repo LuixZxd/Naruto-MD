@@ -15,4 +15,3 @@
 > Queda estrictamente prohibido clonar, copiar, modificar, distribuir o reutilizar el código sin autorización expresa del autor.
 
 ---
-!
