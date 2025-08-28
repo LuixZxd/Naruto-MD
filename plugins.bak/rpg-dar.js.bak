@@ -1,0 +1,50 @@
+const objetosValidos = ['pocion', 'comida', 'revivir']
+
+let handlerDarPokemon = async (m, { conn, args }) => {
+  let who = m.sender
+  if (!(who in global.db.data.users)) return m.reply('❌ No tienes perfil.')
+
+  let user = global.db.data.users[who]
+
+  // Inicializar inventario si no existe
+  for (const obj of objetosValidos) {
+    if (typeof user[obj] !== 'number') user[obj] = 0
+  }
+
+  if (!Array.isArray(user.pokemones) || user.pokemones.length === 0) {
+    return m.reply('❌ No tienes pokémones para dar objetos.')
+  }
+
+  if (args.length < 2) return m.reply('❓ Uso: darpokemon <objeto> <númeroPokémon>')
+
+  const item = args[0].toLowerCase()
+  if (!objetosValidos.includes(item)) return m.reply(`❌ Objeto inválido. Solo puedes usar: ${objetosValidos.join(', ')}`)
+
+  let indice = parseInt(args[1]) - 1
+  if (isNaN(indice) || indice < 0 || indice >= user.pokemones.length) {
+    return m.reply('❌ Número de Pokémon inválido.')
+  }
+
+  if (user[item] < 1) return m.reply(`❌ No tienes ${item} suficiente para dar.`)
+
+  // Resta del inventario usuario
+  user[item] -= 1
+
+  // Inicializar objetos del pokémon si no existen
+  if (!user.pokemones[indice].objetos) user.pokemones[indice].objetos = {}
+  if (typeof user.pokemones[indice].objetos[item] !== 'number') user.pokemones[indice].objetos[item] = 0
+
+  // Sumar al pokémon
+  user.pokemones[indice].objetos[item] += 1
+
+  const nombrePokemon = user.pokemones[indice].nombre || `#${indice + 1}`
+
+  m.reply(`✅ Le diste 1 ${item} a tu Pokémon ${nombrePokemon}.`)
+}
+
+handlerDarPokemon.help = ['darpokemon <objeto> <númeroPokémon>']
+handlerDarPokemon.tags = ['juegos']
+handlerDarPokemon.command = ['darpokemon']
+handlerDarPokemon.register = true
+
+export default handlerDarPokemon

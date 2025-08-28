@@ -1,0 +1,102 @@
+import { generateWAMessageFromContent } from '@whiskeysockets/baileys'
+
+let handler = async (m, { conn, args, command }) => {  
+  global.listadoGrupos = global.listadoGrupos || []  
+  
+  if (['listgroup', 'grouplist'].includes(command)) {  
+    let txt = ''  
+    global.listadoGrupos = []  
+
+    const groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats)  
+    const totalGroups = groups.length  
+
+    for (let i = 0; i < totalGroups; i++) {  
+      const [jid] = groups[i]  
+      const metadata = ((conn.chats[jid] || {}).metadata || (await conn.groupMetadata(jid).catch(() => null))) || {}  
+      const participants = metadata.participants || []  
+      const bot = participants.find(u => conn.decodeJid(u.id) === conn.user.jid) || {}  
+      const isBotAdmin = bot?.admin || false  
+      const isParticipant = participants.some(u => conn.decodeJid(u.id) === conn.user.jid)  
+      const participantStatus = isParticipant ? 'Participante' : 'Ex-participante'  
+      const totalParticipants = participants.length  
+      const groupName = metadata.subject || await conn.getName(jid)  
+      const groupLink = isBotAdmin  
+        ? `https://chat.whatsapp.com/${await conn.groupInviteCode(jid).catch(() => '') || 'Error'}`  
+        : '(No disponible: sin permisos de admin)'  
+
+      global.listadoGrupos.push({ jid, nombre: groupName })  
+
+      txt += `╔══════ ⊹Grupo #${i + 1}⊹ ══════╗  
+╠  Nombre: ${groupName}  
+╠  ID: ${jid}  
+╠  Admin: ${isBotAdmin ? 'Sí' : 'No'}  
+╠  Estado: ${participantStatus}  
+╠  Participantes: ${totalParticipants}  
+╠  Link: ${groupLink}  
+╚════════════════════╝\n\n`  
+    }  
+
+    m.reply(`📋 *Lista de grupos del bot*\n\nTotal: ${totalGroups} grupos encontrados.\n\n${txt}`.trim())  
+
+  } else if (command == 'salirg') {  
+    const num = parseInt(args[0])  
+    if (!num || !global.listadoGrupos[num - 1]) return m.reply('❌ Grupo no encontrado. Usa primero *.listgroup*')  
+
+    const { jid, nombre } = global.listadoGrupos[num - 1]  
+
+    await conn.sendMessage(jid, {  
+      text: `👋 *${conn.user.name}* se despide de este grupo.\nGracias por todo. ¡Hasta pronto! ✨`  
+    })  
+
+    await conn.groupLeave(jid)  
+    await m.reply(`🚪 Salí del grupo *${nombre}* correctamente.`)  
+
+  } else if (command == 'aviso') {  
+    // Sintaxis: .aviso <número> | <mensaje>  
+    const texto = args.join(' ').split('|')  
+    const numero = parseInt(texto[0])  
+    const mensaje = texto[1]?.trim()  
+    if (!numero) return m.reply(`⚠️ Uso: *.aviso <número> | <mensaje>*\nEjemplo: *.aviso 2 | Hola grupo!*`)  
+    if (!global.listadoGrupos[numero - 1]) return m.reply('❌ Grupo no encontrado. Usa primero *.listgroup*')  
+
+    const { jid, nombre } = global.listadoGrupos[numero - 1]  
+
+    let q = m.quoted ? m.quoted : m
+    let textoAviso = mensaje ? `📢 *AVISO DEL CREADOR*\n\n${mensaje}` : null
+
+    // Validar que haya mensaje o archivo
+    let mime = (q.msg || q).mimetype || ''
+    let isMedia = /image|video|sticker|audio/.test(mime)
+    if (!textoAviso && !isMedia) {
+        return m.reply('⚠️ Debes escribir un mensaje o responder a un archivo para enviar el aviso.')
+    }
+
+    if (!textoAviso && isMedia) {
+        textoAviso = '📢 *AVISO DEL CREADOR*'
+    }
+
+    // Obtener todos los participantes para hidetag
+    const metadata = await conn.groupMetadata(jid)
+    const users = metadata.participants.map(u => conn.decodeJid(u.id))
+
+    // Enviar según tipo de media
+    if (isMedia) {
+        let media = await q.download?.()
+        if (q.mtype === 'imageMessage') await conn.sendMessage(jid, { image: media, caption: textoAviso, mentions: users })
+        else if (q.mtype === 'videoMessage') await conn.sendMessage(jid, { video: media, caption: textoAviso, mentions: users, mimetype: 'video/mp4' })
+        else if (q.mtype === 'audioMessage') await conn.sendMessage(jid, { audio: media, mimetype: 'audio/mp4', fileName: `Aviso.mp3`, mentions: users })
+        else if (q.mtype === 'stickerMessage') await conn.sendMessage(jid, { sticker: media, mentions: users })
+    } else {
+        await conn.sendMessage(jid, { text: textoAviso, mentions: users })
+    }
+
+    m.reply(`✅ Aviso enviado a *${nombre}*`)
+  }  
+}  
+
+handler.help = ['listgroup', 'salirg <número>', 'aviso <número> | <mensaje> (o responder con archivo)']  
+handler.tags = ['owner']  
+handler.command = ['listgroup', 'salirg', 'aviso', 'grouplist']  
+handler.rowner = true  
+
+export default handler

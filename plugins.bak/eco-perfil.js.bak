@@ -1,0 +1,60 @@
+function calcularNivel(exp) {
+  return Math.floor(Math.sqrt(exp) / 10);
+}
+
+function xpParaNivel(nivel) {
+  return Math.pow(nivel * 10, 2);
+}
+
+let handler = async (m, { conn }) => {
+  let user = global.db.data.users[m.sender];
+  if (!user) {
+    user = global.db.data.users[m.sender] = {
+      name: await conn.getName(m.sender),
+      dinero: 0,
+      exp: 0,
+      diamond: 0,
+      moneda: '¥',
+      level: 0,
+      registered: false,
+      rango: '⭑ Bronce V ⭑'
+    };
+  }
+
+  if (!user.registered) {
+    const nombre = user.name || await conn.getName(m.sender);
+    return m.reply(`🔰 No estás registrado aún.\n➤ Usa: *.reg ${nombre}.18*`);
+  }
+
+  const nivelActual = calcularNivel(user.exp || 0);
+  user.level = nivelActual;
+  user.rango = obtenerRango(nivelActual);
+
+  const xpActual = user.exp || 0;
+  const xpNivelSiguiente = xpParaNivel(nivelActual + 1);
+  const xpParaSubir = xpNivelSiguiente - xpActual;
+
+  const nombre = user.name || await conn.getName(m.sender);
+  const avatar = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://files.catbox.moe/xr2m6u.jpg');
+  const backgroundURL = encodeURIComponent('https://i.ibb.co/2jMjYXK/IMG-20250103-WA0469.jpg');
+  const avatarURL = encodeURIComponent(avatar);
+
+  const imageAPI = `https://api.siputzx.my.id/api/canvas/profile?backgroundURL=${backgroundURL}&avatarURL=${avatarURL}&rankName=${encodeURIComponent(user.rango)}&rankId=0&exp=${xpActual}&requireExp=0&level=${nivelActual}&name=${encodeURIComponent(nombre)}`;
+
+  const textoPerfil = `
+✿ Perfil de usuario *${nombre}* ✿
+
+${user.moneda || '¥'} : *${(user.dinero || 0).toLocaleString()}*
+✨ *Exp:* *${xpActual.toLocaleString()} XP*
+⭐ *Nivel:* *${nivelActual}* (XP para subir: *${xpParaSubir.toLocaleString()}*)
+💎 *Diamantes:* *${(user.diamond || 0).toLocaleString()}*
+⚔️ *Rango:* ${user.rango}
+`.trim();
+
+  try {
+    await conn.sendFile(m.chat, imageAPI, 'perfil.jpg', textoPerfil, m);
+  } catch (e) {
+    await conn.reply(m.chat, '❌ Error al generar el perfil.', m);
+    console.error(e);
+  }
+};

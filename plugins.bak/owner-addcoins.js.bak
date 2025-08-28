@@ -1,0 +1,31 @@
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+  // Solo el owner puede usar
+  
+
+  // Detectar a quién dar dinero
+  let who;
+  if (m.mentionedJid && m.mentionedJid[0]) {
+    who = m.mentionedJid[0];
+  } else if (m.quoted) {
+    who = m.quoted.sender;
+  } else {
+    who = m.sender; // 👉 si no mencionas a nadie, te lo da a ti
+  }
+
+  let user = global.db.data.users[who];
+  if (!user) return m.reply('❌ El usuario no está registrado en la base de datos.');
+
+  // Validar cantidad
+  let amount = parseInt(args[0]); // ahora la cantidad va en args[0]
+  if (isNaN(amount)) return m.reply(`⚠️ Ingresa una cantidad válida.\nEjemplo: *${usedPrefix + command} 500* o *${usedPrefix + command} @usuario 500*`);
+
+  // Sumar dinero
+  user.dinero = (user.dinero || 0) + amount;
+
+  conn.reply(m.chat, `✅ Se agregaron *${amount}* 💵 a @${who.split('@')[0]}\nNuevo saldo: *${user.dinero}* 💵`, m, { mentions: [who] });
+};
+
+handler.command = ['adddinero'];
+handler.owner = true; // Solo owner puede usar
+
+export default handler;

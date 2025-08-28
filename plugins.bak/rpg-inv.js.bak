@@ -1,0 +1,46 @@
+import fs from 'fs'
+
+const usuariosPath = './src/database/usuarios.json'
+
+function cargarJSON(ruta, valorDefault = {}) {
+  try {
+    if (!fs.existsSync(ruta)) fs.writeFileSync(ruta, JSON.stringify(valorDefault, null, 2))
+    const data = fs.readFileSync(ruta, 'utf-8').trim()
+    return data ? JSON.parse(data) : valorDefault
+  } catch (e) {
+    return valorDefault
+  }
+}
+
+let handlerInventario = async (m, { conn }) => {
+  const userId = m.sender.replace(/[^0-9]/g, '')
+  const usuarios = cargarJSON(usuariosPath)
+  const user = usuarios[userId]
+
+  if (!user) return m.reply('😢 No tienes perfil. Usa *.atrapar* primero.')
+
+  // Extraemos solo los objetos que están en precios para mostrar inventario
+  const objetos = ['pocion', 'comida', 'revivir']
+  let texto = `💼 *Tu inventario:*\n\n`
+
+  let tieneObjetos = false
+  objetos.forEach(obj => {
+    if (user[obj] && user[obj] > 0) {
+      texto += `• ${obj.charAt(0).toUpperCase() + obj.slice(1)}: ${user[obj]}\n`
+      tieneObjetos = true
+    }
+  })
+
+  if (!tieneObjetos) texto += '_No tienes objetos en tu inventario._\n'
+
+  texto += `\n💰 *Monedas:* ${user.dinero}`
+
+  m.reply(texto)
+}
+
+handlerInventario.help = ['inventario']
+handlerInventario.tags = ['juegos']
+handlerInventario.command = ['inventario']
+handlerInventario.register = true
+
+export default handlerInventario

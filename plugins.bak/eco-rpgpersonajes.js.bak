@@ -1,0 +1,192 @@
+// Personajes base disponibles con atributos y precio
+const personajesDisponibles = [
+  { nombre: 'Guerrero', precio: 500, ataque: 50, defensa: 40, vida: 200 },
+  { nombre: 'Mago', precio: 700, ataque: 70, defensa: 30, vida: 150 },
+  { nombre: 'Arquero', precio: 600, ataque: 60, defensa: 35, vida: 170 },
+  { nombre: 'Asesino', precio: 800, ataque: 80, defensa: 25, vida: 140 },
+]
+
+// Función para capitalizar
+function capitalizar(texto) {
+  return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase()
+}
+
+// Función para calcular nivel por experiencia
+function calcularNivel(xp) {
+  return Math.floor(Math.sqrt(xp / 100))
+}
+
+// Función para subir nivel y mejorar stats
+function subirNivel(personaje) {
+  let nivelActual = personaje.nivel || 1
+  let nuevoNivel = calcularNivel(personaje.xp || 0)
+  if (nuevoNivel > nivelActual) {
+    personaje.nivel = nuevoNivel
+    // Mejorar stats con cada nivel
+    personaje.ataque += 5 * (nuevoNivel - nivelActual)
+    personaje.defensa += 3 * (nuevoNivel - nivelActual)
+    personaje.vida += 20 * (nuevoNivel - nivelActual)
+    return true
+  }
+  return false
+}
+
+// Comando listar personajes disponibles
+async function listarPersonajes(m) {
+  let texto = '*Personajes Disponibles:*\n\n'
+  personajesDisponibles.forEach(p => {
+    texto += `- ${p.nombre} (Precio: ${p.precio} 💰)\n  Ataque: ${p.ataque} | Defensa: ${p.defensa} | Vida: ${p.vida}\n`
+  })
+  await m.reply(texto)
+}
+
+// Comando comprar personaje
+async function comprarPersonaje(m, args) {
+  let user = global.db.data.users[m.sender]
+  if (!user) global.db.data.users[m.sender] = { dinero: 1000, personajes: {}, personajeActivo: null }
+  user = global.db.data.users[m.sender]
+
+  if (!args || args.length === 0) return m.reply('Escribe el nombre del personaje que quieres comprar.\nEjemplo: !comprar guerrero')
+  let nombre = capitalizar(args[0])
+  let pBase = personajesDisponibles.find(p => p.nombre === nombre)
+  if (!pBase) return m.reply('Personaje no encontrado.')
+
+  if (user.personajes && user.personajes[nombre]) {
+    return m.reply(`Ya tienes el personaje *${nombre}*.`)
+  }
+
+  if (!user.dinero || user.dinero < pBase.precio) {
+    return m.reply('No tienes suficiente dinero para comprar ese personaje.')
+  }
+
+  user.dinero -= pBase.precio
+  user.personajes = user.personajes || {}
+  user.personajes[nombre] = {
+    nivel: 1,
+    xp: 0,
+    ataque: pBase.ataque,
+    defensa: pBase.defensa,
+    vida: pBase.vida,
+    vidaActual: pBase.vida,
+  }
+  m.reply(`¡Has comprado el personaje *${nombre}*! Te quedan ${user.dinero} 💰.`)
+}
+
+// Comando mostrar tus personajes
+async function misPersonajes(m) {
+  let user = global.db.data.users[m.sender]
+  if (!user || !user.personajes || Object.keys(user.personajes).length === 0) {
+    return m.reply('No tienes personajes. Compra uno con !comprar <nombre>')
+  }
+  let texto = '*Tus personajes:*\n\n'
+  for (const [nombre, p] of Object.entries(user.personajes)) {
+    texto += `- ${nombre} (Nivel: ${p.nivel})\n  Ataque: ${p.ataque} | Defensa: ${p.defensa} | Vida: ${p.vidaActual}/${p.vida}\n  XP: ${p.xp}\n`
+  }
+  await m.reply(texto)
+}
+
+// Comando activar personaje
+async function activarPersonaje(m, args) {
+  if (!args || args.length === 0) return m.reply('Escribe el nombre del personaje que quieres activar.\nEjemplo: !activar guerrero')
+  let user = global.db.data.users[m.sender]
+  if (!user || !user.personajes || !user.personajes[capitalizar(args[0])]) {
+    return m.reply('No tienes ese personaje comprado.')
+  }
+  let nombre = capitalizar(args[0])
+  user.personajeActivo = nombre
+  m.reply(`Has activado el personaje *${nombre}*.`)
+}
+
+// Comando mostrar personaje activo
+async function personajeActivo(m) {
+  let user = global.db.data.users[m.sender]
+  if (!user || !user.personajeActivo) return m.reply('No tienes un personaje activo. Activa uno con !activar <nombre>')
+  let p = user.personajes[user.personajeActivo]
+  m.reply(`*Personaje activo:* ${user.personajeActivo}\nNivel: ${p.nivel}\nAtaque: ${p.ataque}\nDefensa: ${p.defensa}\nVida: ${p.vidaActual}/${p.vida}\nXP: ${p.xp}`)
+}
+
+// Comando para combatir contra personaje aleatorio (de bot)
+async function combatir(m) {
+  let user = global.db.data.users[m.sender]
+  if (!user || !user.personajeActivo) return m.reply('Activa un personaje primero con !activar <nombre>')
+  let pUser = user.personajes[user.personajeActivo]
+
+  // Personaje enemigo bot aleatorio
+  const enemigos = [
+    { nombre: 'Goblin', ataque: 40, defensa: 20, vida: 150 },
+    { nombre: 'Orco', ataque: 60, defensa: 30, vida: 200 },
+    { nombre: 'Troll', ataque: 80, defensa: 40, vida: 250 },
+  ]
+  let enemigo = enemigos[Math.floor(Math.random() * enemigos.length)]
+
+  // Simular combate muy básico por turnos
+  let vidaUser = pUser.vidaActual
+  let vidaEnemigo = enemigo.vida
+  let turno = 0
+  let log = []
+
+  while (vidaUser > 0 && vidaEnemigo > 0 && turno < 20) {
+    if (turno % 2 === 0) {
+      // Turno usuario: daño = ataqueUser - defensaEnemigo (mínimo 1)
+      let dano = Math.max(pUser.ataque - enemigo.defensa, 1)
+      vidaEnemigo -= dano
+      log.push(`Tu ${user.personajeActivo} ataca y hace ${dano} daño. Enemigo tiene ${vidaEnemigo < 0 ? 0 : vidaEnemigo} HP.`)
+    } else {
+      // Turno enemigo
+      let dano = Math.max(enemigo.ataque - pUser.defensa, 1)
+      vidaUser -= dano
+      log.push(`El enemigo ${enemigo.nombre} ataca y hace ${dano} daño. Te quedan ${vidaUser < 0 ? 0 : vidaUser} HP.`)
+    }
+    turno++
+  }
+
+  let resultado
+  if (vidaUser > 0 && vidaEnemigo <= 0) {
+    resultado = '¡Ganaste la batalla! 🎉'
+    // Ganas XP y dinero
+    let xpGana = 100
+    let dineroGana = 200
+    pUser.xp += xpGana
+    user.dinero += dineroGana
+    subirNivel(pUser)
+    pUser.vidaActual = pUser.vida // Se cura al final
+    log.push(`Ganas ${xpGana} XP y ${dineroGana} 💰.`)
+  } else if (vidaUser <= 0 && vidaEnemigo > 0) {
+    resultado = 'Perdiste la batalla. 😢'
+    pUser.vidaActual = Math.max(vidaUser, 1) // Queda con algo de vida para no morir
+  } else {
+    resultado = 'La batalla terminó en empate.'
+  }
+
+  await m.reply(
+    `⚔️ *Combate RPG*\n\n` +
+    log.join('\n') + `\n\n` +
+    resultado
+  )
+}
+
+// Handler general
+let handler = async (m, { conn, command, args }) => {
+  if (!global.db) global.db = { data: { users: {} } }
+
+  switch (command.toLowerCase()) {
+    case 'personajes':
+      return listarPersonajes(m)
+    case 'comprar':
+      return comprarPersonaje(m, args)
+    case 'mispersonajes':
+      return misPersonajes(m)
+    case 'activar':
+      return activarPersonaje(m, args)
+    case 'activo':
+      return personajeActivo(m)
+    case 'combatir':
+      return combatir(m)
+    default:
+      return m.reply('Comando no reconocido.')
+  }
+}
+
+handler.command = ['personajes','comprar','mispersonajes','activar','activo','combatir']
+
+export default handler

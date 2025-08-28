@@ -1,0 +1,52 @@
+var handler = async (m, { conn }) => {
+  let user = global.db.data.users[m.sender]
+  let now = Date.now()
+  let cooldown = 2 * 60 * 60 * 1000 // 2 horas
+  let nextClaim = (user.lastclaim || 0) + cooldown
+
+  const moneda = user.moneda || '¥'
+  const rcanal = global.rcanal || {}
+
+  if (now < nextClaim) {
+    let wait = msToTime(nextClaim - now)
+    return conn.reply(m.chat, `✦ *Ya reclamaste tu premio diario*\n\n✧ Vuelve en: *${wait}*`, m)
+  }
+
+  // Recompensas random entre 100 y 500
+  let dinero = Math.floor(Math.random() * 401) + 100
+  let exp = Math.floor(Math.random() * 401) + 100
+  let diamond = Math.floor(Math.random() * 401) + 100
+
+  // Asegurar que las variables existen antes de sumar
+  user.dinero = (user.dinero || 0) + dinero
+  user.exp = (user.exp || 0) + exp
+  user.diamond = (user.diamond || 0) + diamond
+  user.lastclaim = now
+
+  let texto = 
+`✦ *Recompensa Diaria* ✦
+
+❐ ✧ XP: *+${exp}*
+❐ Diamantes: *+${diamond}*
+❐ ${moneda}: *+${dinero}*`
+
+  await conn.reply(m.chat, texto, m, rcanal)
+}
+
+handler.help = ['daily', 'claim']
+handler.tags = ['rpg']
+handler.command = ['daily', 'diario']
+handler.group = false
+handler.register = true
+
+export default handler
+
+function msToTime(duration) {
+  let hours = Math.floor(duration / (1000 * 60 * 60))
+  let minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60))
+
+  let hDisplay = hours > 0 ? (hours < 10 ? '0' + hours : hours) + ' Horas ' : ''
+  let mDisplay = minutes > 0 ? (minutes < 10 ? '0' + minutes : minutes) + ' Minutos' : ''
+
+  return hDisplay + mDisplay
+}

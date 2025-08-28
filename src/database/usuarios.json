@@ -1,0 +1,98 @@
+{
+  "50765836410": {
+    "nombre": "Luis7",
+    "pokemon": {
+      "id": "007",
+      "nombre": "Squirtle",
+      "alias": "Squirtle",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-12T01:32:42.176Z",
+      "comida": null
+    },
+    "dinero": null,
+    "pocion": 1
+  },
+  "68453692121241": {
+    "nombre": "Luis7",
+    "pokemon": {
+      "id": "020",
+      "nombre": "Raticate",
+      "alias": "Raticate",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-12T01:36:00.536Z"
+    }
+  },
+  "50769388704": {
+    "nombre": "Zyprah",
+    "pokemon": {
+      "id": "026",
+      "nombre": "Raichu",
+      "alias": "Raichu",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-12T01:37:20.438Z"
+    },
+    "dinero": null,
+    "comida": 1
+  },
+  "281449626394643": {
+    "nombre": "Ale",
+    "pokemon": {
+      "id": "022",
+      "nombre": "Fearow",
+      "alias": "Fearow",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-12T01:37:47.786Z"
+    }
+  },
+  "58609476087992": {
+    "nombre": "Sebastian",
+    "pokemon": {
+      "id": "016",
+      "nombre": "Pidgey",
+      "alias": "Pidgey",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-12T12:41:11.520Z"
+    }
+  },
+  "95877158932622": {
+    "nombre": "Jheqn",
+    "pokemon": {
+      "id": "010",
+      "nombre": "Caterpie",
+      "alias": "Caterpie",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-18T01:25:03.315Z"
+    }
+  },
+  "211793595088927": {
+    "nombre": "️SEBAS_KOS:🔥",
+    "pokemon": {
+      "id": "028",
+      "nombre": "Sandslash",
+      "alias": "Sandslash",
+      "nivel": 1,
+      "dinero": 5,
+      "vida": 20,
+      "vidaMax": 20,
+      "fechaCaptura": "2025-08-18T01:25:17.707Z"
+    }
+  }
+}
