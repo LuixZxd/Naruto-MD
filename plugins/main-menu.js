@@ -63,7 +63,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let menuText = `
 *⌬━━━━▣━━◤◉‿◉◢━━▣━━━━━⌬*
 
-Hola *@${userId.split('@')[0]}* soy *Sasuke-Bot*
+Hola *@${userId.split('@')[0]}* soy *Naruto-Bot*
 
 ╔══════⌬『 𝑰 𝑵 𝑭 𝑶 』
 ║ ✎ *Cliente:* @${userId.split('@')[0]}

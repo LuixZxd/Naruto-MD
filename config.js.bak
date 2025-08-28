@@ -15,7 +15,7 @@ global.confirmCode = ''
 
 // ᑕOᒪᗩᗷOᖇᗩᗪOᖇᗴՏ Y ᑕᖇᗴáᗪOᖇ 🌸
 global.owner = [
-  [ '50765836410', 'Luis', true ]
+  [ '50765836410', 'LuisXD', true ]
 ]; 
 
 //✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏
