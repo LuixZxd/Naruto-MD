@@ -1,7 +1,7 @@
 {
   "users": {
     "50765836410@s.whatsapp.net": {
-      "exp": 15973,
+      "exp": 16081,
       "joincount": 26,
       "diamond": 15,
       "lastadventure": 0,
@@ -32,9 +32,9 @@
       "role": "Nuv",
       "premium": false,
       "premiumTime": 0,
-      "commands": 333,
+      "commands": 337,
       "rango": "Bronce I 🥉",
-      "spam": 1756385416851,
+      "spam": 1756396235154,
       "dinero": 14000,
       "coin": null,
       "crime": 0,
@@ -98,7 +98,7 @@
       "Subs": 1756183095022
     },
     "50769388704@s.whatsapp.net": {
-      "exp": 16499,
+      "exp": 16564,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -673,7 +673,7 @@
       "dinero": 0
     },
     "50763701081@s.whatsapp.net": {
-      "exp": 723,
+      "exp": 727,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -712,7 +712,7 @@
       "level": 0
     },
     "50764903785@s.whatsapp.net": {
-      "exp": 1019,
+      "exp": 1060,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -993,7 +993,7 @@
       "level": 0
     },
     "203186816209010@lid": {
-      "exp": 71,
+      "exp": 76,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -1476,7 +1476,7 @@
       "level": 0
     },
     "58609476087992@lid": {
-      "exp": 15271,
+      "exp": 15330,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -1615,7 +1615,7 @@
       "warn": 0
     },
     "11231792492577@lid": {
-      "exp": 35,
+      "exp": 40,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -1704,7 +1704,7 @@
       "warn": 0
     },
     "48786936180953@lid": {
-      "exp": 15,
+      "exp": 17,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -2165,7 +2165,7 @@
       "level": 0
     },
     "50768138296@s.whatsapp.net": {
-      "exp": 442,
+      "exp": 445,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -2585,7 +2585,7 @@
       "level": 0
     },
     "95877158932622@lid": {
-      "exp": 2539,
+      "exp": 2548,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -2632,7 +2632,7 @@
       "wait": 1755480780286
     },
     "68453692121241@lid": {
-      "exp": 12223,
+      "exp": 12426,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -2667,8 +2667,8 @@
       "warn": 0,
       "rango": "Bronce III 🥉",
       "coin": null,
-      "commands": 227,
-      "spam": 1756345567560,
+      "commands": 232,
+      "spam": 1756397232679,
       "lastrob2": 1754961751194,
       "dinero": 46,
       "level": 5,
@@ -3394,7 +3394,7 @@
       "dinero": 0
     },
     "50766351984@s.whatsapp.net": {
-      "exp": 8,
+      "exp": 29,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -3427,7 +3427,9 @@
       "premiumTime": 0,
       "rango": "Bronce V 🥉",
       "coin": null,
-      "dinero": 0
+      "dinero": 0,
+      "crime": 0,
+      "warn": 0
     },
     "185268061655171@lid": {
       "exp": 31,
@@ -4190,7 +4192,7 @@
       "dinero": 0
     },
     "145363554046036@lid": {
-      "exp": 26,
+      "exp": 35,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -5565,7 +5567,7 @@
       "level": 0
     },
     "94068407324831@lid": {
-      "exp": 435,
+      "exp": 437,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -5948,7 +5950,7 @@
       "dinero": 0
     },
     "203298418245638@lid": {
-      "exp": 33,
+      "exp": 35,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -6433,7 +6435,7 @@
       "warn": 0
     },
     "94103303929866@lid": {
-      "exp": 9,
+      "exp": 17,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -6465,7 +6467,9 @@
       "premium": false,
       "premiumTime": 0,
       "rango": "Bronce V 🥉",
-      "coin": null
+      "coin": null,
+      "crime": 0,
+      "warn": 0
     },
     "228836193095756@lid": {
       "exp": 25,
@@ -6760,7 +6764,7 @@
       "level": 0
     },
     "250397163798537@lid": {
-      "exp": 11,
+      "exp": 20,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -6792,7 +6796,7 @@
       "premium": false,
       "premiumTime": 0,
       "rango": "Bronce V 🥉",
-      "coin": 10,
+      "coin": null,
       "crime": 0,
       "level": 0,
       "warn": 0
@@ -7965,7 +7969,7 @@
       "coin": null
     },
     "133694396338258@lid": {
-      "exp": 537,
+      "exp": 557,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -8219,7 +8223,7 @@
       "level": 0
     },
     "36933195567106@lid": {
-      "exp": 558,
+      "exp": 560,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -8774,7 +8778,7 @@
       "rango": "Bronce V 🥉"
     },
     "222419293888578@lid": {
-      "exp": 16,
+      "exp": 25,
       "coin": null,
       "joincount": 1,
       "diamond": 3,
@@ -9318,7 +9322,7 @@
       "coin": null
     },
     "91964292731062@lid": {
-      "exp": 1,
+      "exp": 3,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -9350,7 +9354,9 @@
       "premium": false,
       "premiumTime": 0,
       "rango": "Bronce V 🥉",
-      "coin": null
+      "coin": null,
+      "crime": 0,
+      "warn": 0
     },
     "172452197990518@lid": {
       "exp": 8,
@@ -9571,7 +9577,7 @@
       "warn": 0
     },
     "138242498232575@lid": {
-      "exp": 10,
+      "exp": 11,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -9602,7 +9608,9 @@
       "role": "Nuv",
       "premium": false,
       "premiumTime": 0,
-      "coin": null
+      "coin": null,
+      "crime": 0,
+      "warn": 0
     },
     "161985144553648@lid": {
       "exp": 2,
@@ -9920,7 +9928,7 @@
       "warn": 0
     },
     "73882379804767@lid": {
-      "exp": 3,
+      "exp": 7,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -9951,7 +9959,9 @@
       "role": "Nuv",
       "premium": false,
       "premiumTime": 0,
-      "coin": null
+      "coin": null,
+      "crime": 0,
+      "warn": 0
     },
     "23085482832053@lid": {
       "exp": 6,
@@ -10009,6 +10019,74 @@
       "description": "",
       "packstickers": null,
       "name": "justin.htts@gmail.com",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "bank": 0,
+      "role": "Nuv",
+      "premium": false,
+      "premiumTime": 0,
+      "coin": null
+    },
+    "118253753999426@lid": {
+      "exp": 8,
+      "joincount": 1,
+      "diamond": 3,
+      "lastadventure": 0,
+      "health": 100,
+      "lastclaim": 0,
+      "lastcofre": 0,
+      "lastdiamantes": 0,
+      "lastcode": 0,
+      "lastduel": 0,
+      "lastpago": 0,
+      "lastmining": 0,
+      "lastcodereg": 0,
+      "muto": false,
+      "registered": false,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "name": "🍓🩷🛐",
+      "age": -1,
+      "regTime": -1,
+      "afk": -1,
+      "afkReason": "",
+      "banned": false,
+      "useDocument": false,
+      "bank": 0,
+      "role": "Nuv",
+      "premium": false,
+      "premiumTime": 0,
+      "coin": null
+    },
+    "144474512597090@lid": {
+      "exp": 6,
+      "joincount": 1,
+      "diamond": 3,
+      "lastadventure": 0,
+      "health": 100,
+      "lastclaim": 0,
+      "lastcofre": 0,
+      "lastdiamantes": 0,
+      "lastcode": 0,
+      "lastduel": 0,
+      "lastpago": 0,
+      "lastmining": 0,
+      "lastcodereg": 0,
+      "muto": false,
+      "registered": false,
+      "genre": "",
+      "birth": "",
+      "marry": "",
+      "description": "",
+      "packstickers": null,
+      "name": "Francisco García",
       "age": -1,
       "regTime": -1,
       "afk": -1,
@@ -10722,10 +10800,10 @@
       "lastSuccess": 1754951928198
     },
     "info-ping.js": {
-      "total": 18,
-      "success": 18,
-      "last": 1756181968374,
-      "lastSuccess": 1756181968374
+      "total": 24,
+      "success": 24,
+      "last": 1756397232702,
+      "lastSuccess": 1756397232702
     },
     "owner-purga.js": {
       "total": 2,
@@ -10896,10 +10974,10 @@
       "lastSuccess": 1754968598721
     },
     "tools-hd.js": {
-      "total": 47,
-      "success": 46,
-      "last": 1756356490685,
-      "lastSuccess": 1756356490685
+      "total": 50,
+      "success": 48,
+      "last": 1756396129795,
+      "lastSuccess": 1756396129795
     },
     "ai-ia.js": {
       "total": 3,
