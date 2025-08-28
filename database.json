@@ -1,7 +1,7 @@
 {
   "users": {
     "50765836410@s.whatsapp.net": {
-      "exp": 16081,
+      "exp": 16219,
       "joincount": 26,
       "diamond": 15,
       "lastadventure": 0,
@@ -34,7 +34,7 @@
       "premiumTime": 0,
       "commands": 337,
       "rango": "Bronce I 🥉",
-      "spam": 1756396235154,
+      "spam": 1756402212137,
       "dinero": 14000,
       "coin": null,
       "crime": 0,
@@ -98,7 +98,7 @@
       "Subs": 1756183095022
     },
     "50769388704@s.whatsapp.net": {
-      "exp": 16564,
+      "exp": 16631,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -1476,7 +1476,7 @@
       "level": 0
     },
     "58609476087992@lid": {
-      "exp": 15330,
+      "exp": 15345,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -1818,7 +1818,7 @@
       "coin": null
     },
     "83151254765691@lid": {
-      "exp": 20,
+      "exp": 30,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -1973,7 +1973,7 @@
       "dinero": 0
     },
     "227367347867856@lid": {
-      "exp": 17,
+      "exp": 24,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -2632,7 +2632,7 @@
       "wait": 1755480780286
     },
     "68453692121241@lid": {
-      "exp": 12426,
+      "exp": 12688,
       "joincount": 26,
       "diamond": 3,
       "lastadventure": 0,
@@ -2668,7 +2668,7 @@
       "rango": "Bronce III 🥉",
       "coin": null,
       "commands": 232,
-      "spam": 1756397232679,
+      "spam": 1756400257386,
       "lastrob2": 1754961751194,
       "dinero": 46,
       "level": 5,
@@ -6135,7 +6135,7 @@
       "warn": 0
     },
     "58760034783296@lid": {
-      "exp": 10,
+      "exp": 25,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -7385,7 +7385,7 @@
       "warn": 0
     },
     "13413635907794@lid": {
-      "exp": 85,
+      "exp": 93,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -7423,7 +7423,7 @@
       "warn": 0
     },
     "55474401603713@lid": {
-      "exp": 5326,
+      "exp": 5338,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -7969,7 +7969,7 @@
       "coin": null
     },
     "133694396338258@lid": {
-      "exp": 557,
+      "exp": 565,
       "joincount": 1,
       "diamond": 3,
       "lastadventure": 0,
@@ -10632,10 +10632,10 @@
       "lastSuccess": 1754922047761
     },
     "main-menu.js": {
-      "total": 70,
-      "success": 69,
-      "last": 1756382905094,
-      "lastSuccess": 1756382905094
+      "total": 73,
+      "success": 72,
+      "last": 1756398832873,
+      "lastSuccess": 1756398832873
     },
     "eco•personajes.js": {
       "total": 2,
@@ -10800,10 +10800,10 @@
       "lastSuccess": 1754951928198
     },
     "info-ping.js": {
-      "total": 24,
-      "success": 24,
-      "last": 1756397232702,
-      "lastSuccess": 1756397232702
+      "total": 31,
+      "success": 31,
+      "last": 1756402212166,
+      "lastSuccess": 1756402212166
     },
     "owner-purga.js": {
       "total": 2,
@@ -11250,10 +11250,10 @@
       "lastSuccess": 1756345642488
     },
     "stiker-stiker.js": {
-      "total": 24,
-      "success": 24,
-      "last": 1756384110271,
-      "lastSuccess": 1756384110271
+      "total": 28,
+      "success": 28,
+      "last": 1756400261814,
+      "lastSuccess": 1756400261814
     },
     "_prueba.js": {
       "total": 29,
@@ -11400,10 +11400,10 @@
       "lastSuccess": 1756182541255
     },
     "tools-reducir.js": {
-      "total": 14,
-      "success": 14,
-      "last": 1756320642165,
-      "lastSuccess": 1756320642165
+      "total": 16,
+      "success": 16,
+      "last": 1756400237830,
+      "lastSuccess": 1756400237830
     },
     "fun-dance.js": {
       "total": 3,
