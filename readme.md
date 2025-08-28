@@ -1,5 +1,3 @@
-[![Picsart-24-06-07-05-14-22-511.jpg](https://i.postimg.cc/DwL7Hzbs/20250812-103108.jpg)](https://postimg.cc/HcpRKCLL)
-
 <p align="center">
 <a href="https://wa.me/51929838430"><img title="Author" src="https://files.catbox.moe/0183v7.png"></a>
 <p/>
@@ -11,24 +9,9 @@
 > Copia los códigos uno por uno, no los pegues todos juntos a la vez.
 
 ```bash
-apt-get update -y && pkg upgrade -y && pkg update -y && pkg install nodejs -y && pkg install nodejs-lts -y && pkg install ffmpeg -y && pkg install wget -y && pkg install tesseract -y && pkg install git -y
+Mantenimiento 
 ```
 
-```bash
-termux-setup-storage
-```
-
-```bash
-cd /sdcard && git clone https://github.com/NaufraZapp/Naufrabot-base 
-```
-
-```bash
-cd Naufrabot-base
-```
-
-```bash
-node index
-```
 # 🔥ACTIVAR EN CASO DE DETENERSE EN TERMUX
 
 Si después de instalar el bot en Termux se detiene (pantalla en blanco, pérdida de conexión a Internet, reinicio del dispositivo), sigue estos pasos:
